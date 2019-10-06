@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h4 class="text-center">Add Guitar</h4>
+        <form [formGroup]="guitarForm" (ngSubmit)="onAddGuitar()">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="name">name</label>
+                        <input
+                            type="text"
+                            id="name"
+                            class="form-control"
+                            formControlName="name"
+                            required
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="make">make</label>
+                        <input
+                            type="text"
+                            id="make"
+                            class="form-control"
+                            formControlName="make"
+                            required
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="model">model</label>
+                        <input
+                            type="text"
+                            id="model"
+                            class="form-control"
+                            formControlName="model"
+                            required
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="year">year</label>
+                        <input
+                            type="text"
+                            id="year"
+                            class="form-control"
+                            formControlName="year"
+                            required
+                        >
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <button type="submit" class="btn btn-success" (click)="onSaveGuitars()">Save</button>
+                </div>
+                <div class="col-xs-2">
+                    <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row my-5">
+    <div class="col-md-6">
+        <app-guitar-list></app-guitar-list>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<!-- <div class="row">
+    <div class="col-md-4" *ngFor="let guitar of guitars">
+        <p> {{ guitar.name }}</p>
+        <p> {{ guitar.make  }}</p>
+        <p> {{ guitar.model }}</p>
+        <p> {{ guitar.year }}</p>
+    </div>
+</div> -->
+
+<div class="row">
+    <mat-form-field>
+        <mat-chip-list>
+            <mat-chip
+                *ngFor="let guitar of guitars"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(guitar)"
+            >
+                {{ guitar.name }}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+                placeholder="Select Guitars..."
+                #guitarInput
+                [formControl]="guitarControl"
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputFprSeperatorKeyCodes]="seperatorKeyCodes"
+                [matChipInputAddOnBLur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)"
+            >
+        </mat-chip-list>
+        <mat-auto-complete
+            #auto="matAutocomplete"
+            (optionSelected)="selected($event)"
+        >
+            <mat-option
+                *ngFor="let guitar of filteredGuitars | async"
+                [value]="guitar"
+            >
+                {{ guitar.name }}
+            </mat-option>
+        </mat-auto-complete>
+    </mat-form-field>
+</div>

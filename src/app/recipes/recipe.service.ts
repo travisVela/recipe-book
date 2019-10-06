@@ -8,23 +8,24 @@ import { Subject } from 'rxjs';
 export class RecipeService {
     recipesChanged = new Subject<Recipe[]>();
 
-    private recipes: Recipe[] = [
-        new Recipe('Hamburger',
-        'The most delicious hamburger ever1', 'https://www.wellplated.com/wp-content/uploads/2017/12/Hoppin-John-recipe-600x629.jpg',
-        [
-            new Ingredient('Meat', 1),
-            new Ingredient('Bread', 2),
-            new Ingredient('cheese', 1),
-            new Ingredient('bacon', 2)
-        ]),
-        new Recipe('Cereal',
-        'A plain bowl of amazing cereal!',
-        'https://www.wellplated.com/wp-content/uploads/2017/12/Hoppin-John-recipe-600x629.jpg',
-        [
-            new Ingredient('cereal', 1),
-            new Ingredient('milk', 1)
-        ])
-    ];
+    // private recipes: Recipe[] = [
+    //     new Recipe('Hamburger',
+    //     'The most delicious hamburger ever1', 'https://www.wellplated.com/wp-content/uploads/2017/12/Hoppin-John-recipe-600x629.jpg',
+    //     [
+    //         new Ingredient('Meat', 1),
+    //         new Ingredient('Bread', 2),
+    //         new Ingredient('cheese', 1),
+    //         new Ingredient('bacon', 2)
+    //     ]),
+    //     new Recipe('Cereal',
+    //     'A plain bowl of amazing cereal!',
+    //     'https://www.wellplated.com/wp-content/uploads/2017/12/Hoppin-John-recipe-600x629.jpg',
+    //     [
+    //         new Ingredient('cereal', 1),
+    //         new Ingredient('milk', 1)
+    //     ])
+    // ];
+    private recipes: Recipe[] = [];
 
     constructor(private shoppingListService: ShoppingListService) {}
 
@@ -52,6 +53,11 @@ export class RecipeService {
 
     deleteRecipe(index: number) {
         this.recipes.splice(index, 1);
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    setRecipes(recipes: Recipe[]) {
+        this.recipes = recipes;
         this.recipesChanged.next(this.recipes.slice());
     }
 }
